@@ -31,9 +31,9 @@ Objectives:
 #### Slides & Extras 
 |Code     |Item    | Price |
 |---------|--------|-------|
-|401|Classic Fries|$3.99
-|402|Loaded Cheese Fries|$5.99
-|403|Onion Rings|$4.99
+|401|Classic Fries|$3.99|
+|402|Loaded Cheese Fries|$5.99|
+|403|Onion Rings|$4.99|
 
 
 #### Drinks & Desserts
