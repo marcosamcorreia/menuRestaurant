@@ -1,6 +1,4 @@
-a=0
-i=0
-
+count=0
 
 items=[
     [101,"The OG Cheeseburger",7.99],
@@ -19,9 +17,9 @@ items=[
     [502,"Craft Sodas",2.49],
     [503,"Churro Bites",5.49]    
 ]
-print(len(items)) #quantity items 
-
-while a<len(items):
-    print(items[a])
-    a=a+1
-
+#print(len(items)) #quantity items 
+print("Menu")
+print("")
+for i in range(0,len(items)):
+    print(f"{items[i][0]} - {items[i][1]} - {items[i][2]}")
+    
