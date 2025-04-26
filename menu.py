@@ -1,6 +1,8 @@
-count=0
-
-items=[
+item=0
+order=[]
+bill=[]
+count=int(0)
+menu=[
     [101,"The OG Cheeseburger",7.99],
     [102,"The Double Trouble",10.99],
     [103,"The Backyard BBQ",11.49],
@@ -17,9 +19,45 @@ items=[
     [502,"Craft Sodas",2.49],
     [503,"Churro Bites",5.49]    
 ]
+
+
 #print(len(items)) #quantity items 
 print("Menu")
 print("")
-for i in range(0,len(items)):
-    print(f"{items[i][0]} - {items[i][1]} - {items[i][2]}")
+for i in range(0,len(menu)):
+    print(f"{menu[i][0]} - {menu[i][1]} - {menu[i][2]}")
+
+print("Choose the items from the menu")
+print("Type 1 to exit.")
+
+while True:
+        try:
+            item=int(input("Enter the item code:"))
+            break
+        except ValueError:
+            print("Type a number:")
+
+
+while item!=1:
+             
+    if count==len(menu) :
+        item=int(input("Type a valid code:"))
+        count=0
+    else:
+        for i in range(0,len(menu)):       
+            if item==menu[i][0]:
+                order.append([str(menu[i][1]),float(menu[i][2])])
+                print(order)
+            else:
+                count+=1
+    item=1
     
+     
+    
+    
+
+    
+     
+
+
+
