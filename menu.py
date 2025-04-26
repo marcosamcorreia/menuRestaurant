@@ -1,7 +1,3 @@
-item=0
-order=[]
-bill=[]
-count=int(0)
 menu=[
     [101,"The OG Cheeseburger",7.99],
     [102,"The Double Trouble",10.99],
@@ -19,6 +15,14 @@ menu=[
     [502,"Craft Sodas",2.49],
     [503,"Churro Bites",5.49]    
 ]
+item=0
+first=0
+order=[]
+bill=[]
+count=int(0)
+
+
+
 
 
 #print(len(items)) #quantity items 
@@ -30,30 +34,58 @@ for i in range(0,len(menu)):
 print("Choose the items from the menu")
 print("Type 1 to exit.")
 
-while True:
-        try:
-            item=int(input("Enter the item code:"))
-            break
-        except ValueError:
-            print("Type a number:")
-
-
-while item!=1:
-             
-    if count==len(menu) :
-        item=int(input("Type a valid code:"))
-        count=0
-    else:
-        for i in range(0,len(menu)):       
-            if item==menu[i][0]:
-                order.append([str(menu[i][1]),float(menu[i][2])])
-                print(order)
+while True:  #Receive list
+    try:
+        while item!=1:
+            if first==0:
+                item=int(input("Enter the item code:"))
             else:
-                count+=1
-    item=1
+                item=int(input("Anything else?"))
+            if item==1:
+                break
+            for i in range(0,len(menu)):       
+                if item==menu[i][0]:
+                    order.append([str(menu[i][1]),float(menu[i][2])])
+                    print(order)
+                    break
+                else:
+                    count+=1
+
+            while count==len(menu):
+                while True :
+                    try:
+                        item=int(input("Type a valid number:"))
+                        if item==1:
+                            count=0
+                            break
+                        else:
+                            for i in range(0,len(menu)):
+                                if item==menu[i][0]:
+                                    order.append([str(menu[i][1]),float(menu[i][2])])
+                                    print(order)
+                                    count=0 
+                            break   
+                    except ValueError:
+                        print("Type a number!")
+
+            first=1
+            count=0
+            
     
+
+
+
+        break
+    except ValueError:
+        print("Type a number!")
+
+
+
+
+
+
+
      
-    
     
 
     
