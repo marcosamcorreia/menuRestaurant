@@ -8,6 +8,7 @@ def start():
 
     print("Choose the items from the menu")
     print("Type 1 to see your order list and price.")
+    receive()
   
 def receive():
     global item
@@ -39,6 +40,9 @@ def receive():
 
         except ValueError:
             print("Type a number!")
+        
+
+    orderPrice()
 
 def orderPrice():
     global bill
@@ -49,3 +53,24 @@ def orderPrice():
         bill=bill+order[i][1]
 
     print(f"\nThe final price is: ${bill}\n")
+    print("Type 2 to delete any item from your list")
+    print("Type 1 to end the program")
+
+    while True:
+        try:
+            item=int(input(":"))
+            match item:
+                case 1:
+                    print("Ending program...")
+                    break
+                case 2:
+                    print("Remove item")
+                    remove()
+                case _: 
+                    print("Type a valid number")
+                    print("1 to end or 2 to remove item(s):")
+        except ValueError:
+            print("Type a number!")
+    
+def remove():
+    print("Removed")
