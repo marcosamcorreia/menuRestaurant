@@ -46,6 +46,7 @@ def receive():
 
 def orderPrice():
     global bill
+    global count
     print("\nYour order is:\n")
     
     for i in range(0,len(order)):
@@ -64,13 +65,32 @@ def orderPrice():
                     print("Ending program...")
                     break
                 case 2:
-                    print("Remove item")
-                    remove()
+                    count=0
+                    delete()
+                    break
                 case _: 
                     print("Type a valid number")
                     print("1 to end or 2 to remove item(s):")
         except ValueError:
             print("Type a number!")
     
-def remove():
-    print("Removed")
+def delete ():
+    global count
+    if count==0:
+        print("Type the item number to remove")
+        print("Type 00 to end the process")
+        item=int(input("Maybe?"))
+        count=1
+
+    else:
+        print("Want to remove more items?")
+      
+    ####                 HERE                 ####
+   
+    for i in range(0,len(order)):
+        print(order[item-1][1])
+    item=int(input("Ye?"))
+    if item==2:
+        print("YESSSSS")
+    return delete()
+    
