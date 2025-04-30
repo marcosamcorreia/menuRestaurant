@@ -17,7 +17,6 @@ menu=[
 ]
 item=0
 first=0
-rmv=0
 order=[]
 bill=0.0
 count=int(0)
