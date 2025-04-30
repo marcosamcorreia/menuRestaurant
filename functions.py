@@ -41,18 +41,14 @@ def receive():
         except ValueError:
             print("Type a number!")
         
-
+    
     orderPrice()
 
 def orderPrice():
     global bill
     global count
     print("\nYour order is:\n")
-    
-    for i in range(0,len(order)):
-        print(f"     {i+1} - {order[i][0]} - ${order[i][1]}")
-        bill=bill+order[i][1]
-
+    showOrder()
     print(f"\nThe final price is: ${bill}\n")
     print("Type 2 to delete any item from your list")
     print("Type 1 to end the program")
@@ -77,10 +73,11 @@ def orderPrice():
 def delete ():
     global count
     global item
+    global bill
     verror=0
     while True:
         try:
-            while item!=0:
+            while item!=0 and len(order)>0 :
                 if count==0 or verror==count:
                     if count==0:
                         print("Type the item number to remove")
@@ -97,15 +94,19 @@ def delete ():
                         break
               
                 if item-1<=len(order) and item>0: 
-                    print(order)
+                    bill=bill-order[item-1][1]
                     order.remove(order[item-1])
-                    print(order)
-
+                    showOrder()
+                    print(len(order))
                 else:
                     print("Type a valid number")
                     print("0 to leave")
                     item=int(input(":"))
-            return finalOrder()
+            if len(order)<1:
+                print("Your order is empty.")
+                break
+            else:
+                return finalOrder()
         except ValueError:
             verror=1
             count=1
@@ -113,5 +114,14 @@ def delete ():
 
             ####    Calc the new bill   ####
 def finalOrder():
-    print("Oy")  
-    print("Finish")
+    global bill
+    print("\n The final order is:\n")
+    showOrder()
+    print(f"\nThe final price is:${bill}\n")
+    print("Ending program...")
+
+def showOrder():
+    global bill
+    for i in range(0,len(order)):
+        print(f"     {i+1} - {order[i][0]} - ${order[i][1]}")
+        bill=bill+order[i][1]
