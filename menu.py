@@ -1,5 +1,2 @@
 from functions import *
 start()
-
-
-
