@@ -76,21 +76,42 @@ def orderPrice():
     
 def delete ():
     global count
-    if count==0:
-        print("Type the item number to remove")
-        print("Type 00 to end the process")
-        item=int(input("Maybe?"))
-        count=1
+    global item
+    verror=0
+    while True:
+        try:
+            while item!=0:
+                if count==0 or verror==count:
+                    if count==0:
+                        print("Type the item number to remove")
+                    print("0 to end the process")
+                    item=int(input(":"))
+                    if item==0:
+                        break
+                    count=1
+                else:
+                    print("Want to remove more items?")
+                    print("0 to exit")
+                    item=int(input(":"))
+                    if item==0:
+                        break
+              
+                if item-1<=len(order) and item>0: 
+                    print(order)
+                    order.remove(order[item-1])
+                    print(order)
 
-    else:
-        print("Want to remove more items?")
-      
-    ####                 HERE                 ####
-   
-    for i in range(0,len(order)):
-        print(order[item-1][1])
-    item=int(input("Ye?"))
-    if item==2:
-        print("YESSSSS")
-    return delete()
-    
+                else:
+                    print("Type a valid number")
+                    print("0 to leave")
+                    item=int(input(":"))
+            return finalOrder()
+        except ValueError:
+            verror=1
+            count=1
+            print("Type a number!")
+
+            ####    Calc the new bill   ####
+def finalOrder():
+    print("Oy")  
+    print("Finish")
