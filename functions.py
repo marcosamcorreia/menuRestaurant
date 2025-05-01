@@ -6,8 +6,8 @@ def start():
     for i in range(0,len(menu)):
         print(f"{menu[i][0]} - {menu[i][1]} - {menu[i][2]}")
 
-    print("Choose the items from the menu")
-    print("Type 1 to see your order list and price.")
+    print("\nChoose the items from the menu")
+    print("Type 1 to see your order list and price.\n")
     receive()
   
 def receive():
@@ -36,37 +36,44 @@ def receive():
                 else:
                     first=1
                 count=0
+            orderPrice()
             break
 
         except ValueError:
             print("Type a number!")
-        
-    
-    orderPrice()
 
 def orderPrice():
     global bill
     global count
-    print("\nYour order is:\n")
-    showOrder()
-    print(f"\nThe final price is: ${bill}\n")
-    print("Type 2 to delete any item from your list")
-    print("Type 1 to end the program")
-
+    global item
+    num=len(order)
     while True:
         try:
-            item=int(input(":"))
+            if num==0:
+                print("\nYour order is empty.")
+                print("\nEnding program...\n")
+                break
+            else:   
+                print("\nYour order is:\n")
+                showOrder()
+                print(f"\nThe total price is: ${bill}\n")
+                print("Type 1 to end the program.")
+                print("Type 2 to remove an item")
+                item=int(input(":"))
             match item:
                 case 1:
-                    print("Ending program...")
+                    finalOrder()
                     break
                 case 2:
-                    count=0
                     delete()
                     break
                 case _: 
                     print("Type a valid number")
-                    print("1 to end or 2 to remove item(s):")
+                    if num==0:
+                        print("1 to end the program")
+                    else:
+                        print("1 to end or 2 to remove item(s):")
+
         except ValueError:
             print("Type a number!")
     
@@ -74,6 +81,7 @@ def delete ():
     global count
     global item
     global bill
+    count=0
     verror=0
     while True:
         try:
@@ -97,7 +105,6 @@ def delete ():
                     bill=bill-order[item-1][1]
                     order.remove(order[item-1])
                     showOrder()
-                    print(len(order))
                 else:
                     print("Type a valid number")
                     print("0 to leave")
