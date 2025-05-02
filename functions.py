@@ -14,6 +14,7 @@ def receive():
     global item
     global first  
     global count
+    global bill
     while True:  #Receive list
         try:
             while item!=1:
@@ -27,6 +28,7 @@ def receive():
                 for i in range(0,len(menu)):       
                     if item==menu[i][0]:
                         order.append([str(menu[i][1]),float(menu[i][2])])
+                        bill=bill+menu[i][2]
                         print(f"{menu[i][1]} - ${menu[i][2]} added")
                         break
                     else:
@@ -88,14 +90,14 @@ def delete ():
             while item!=0 and len(order)>0 :
                 if count==0 or verror==count:
                     if count==0:
-                        print("Type the item number to remove")
+                        print("\nType the item number to remove")
                     print("0 to end the process")
                     item=int(input(":"))
                     if item==0:
                         break
                     count=1
                 else:
-                    print("Want to remove more items?")
+                    print("\nWant to remove more items?")
                     print("0 to exit")
                     item=int(input(":"))
                     if item==0:
@@ -104,7 +106,9 @@ def delete ():
                 if item-1<=len(order) and item>0: 
                     bill=bill-order[item-1][1]
                     order.remove(order[item-1])
+                    print()
                     showOrder()
+                    print(f"\nThe total price is: {round(bill,2)}")
                 else:
                     print("Type a valid number")
                     print("0 to leave")
@@ -119,16 +123,14 @@ def delete ():
             count=1
             print("Type a number!")
 
-            ####    Calc the new bill   ####
 def finalOrder():
     global bill
     print("\n The final order is:\n")
     showOrder()
-    print(f"\nThe final price is:${bill}\n")
+    print(f"\nThe final price is:${round(bill,2)}\n")
     print("Ending program...")
 
 def showOrder():
-    global bill
     for i in range(0,len(order)):
         print(f"     {i+1} - {order[i][0]} - ${order[i][1]}")
-        bill=bill+order[i][1]
+    
